@@ -53,6 +53,32 @@ const Singular = {
   },
 };
 
+
+// shallow copy a vnode (children are not cloned recursively)
+function cloneVNode(vnode) {
+  if (!vnode.tag) return vnode.text;
+
+  // use the context that the original vnode was created in.
+  const h = vnode.context && vnode.context.$createElement;
+
+  // if it's component node
+  const cOpts = vnode.componentOptions;
+  if (cOpts) {
+    return h(
+      vnode.componentOptions.Ctor,
+      Object.assign({}, vnode.data, {
+        props: cOpts.propsData,
+        on: cOpts.listeners
+      }),
+      vnode.componentOptions.children,
+    );
+  }
+
+  // it's normal html tag node
+  return h(vnode.tag, vnode.data, vnode.children);
+}
+
+
 // render function should render a single element
 // so here we are building many singular responsive
 // wrapper for each one of our child elements.
@@ -63,12 +89,16 @@ export default {
   render(h, context) {
     const { min, max } = context.props;
     return context.children.map(child => {
+      if (!child || (!child.children && !child.text && !child.componentOptions)) {
+        return;
+      }
+
       return h(Singular, { props: { min, max } }, [
         // it's possible that this child node is used in multiple places
         // so we have to clone it right away
-        h(child.tag, child.data, child.children || child.text),
+        cloneVNode(child),
       ]);
-    });
+    }).filter(x => x);
   },
 };
 

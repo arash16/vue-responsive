@@ -1,6 +1,6 @@
 {
   "name": "vue-responsive-component",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Responsive vue component to render contents conditionally based on window's width",
   "main": "lib/index.js",
   "scripts": {
