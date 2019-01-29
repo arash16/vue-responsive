@@ -1,6 +1,6 @@
 {
   "name": "vue-responsive-component",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Responsive vue component to render contents conditionally based on window's width",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "prepublish": "npm run build"
   },
   "repository": "git@github.com:arash16/vue-responsive-component.git",
-  "author": "Arash16 <arash.shakery@gmail.com>",
+  "author": "Arash16 <arash.shakery@gmail.com> (arash16.com)",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.2.3",

@@ -1,10 +1,15 @@
 # vue-responsive-component
 Responsive vue component to render contents conditionally based on window's width.
 
-Component children is not rendered entirely when constraints are not satisfied.
-This is useful for SSR rendered pages where you don't want to render some content too.
-In that case you need to provide ```defaultWidth```, or configure it globally with 
-```configureDefaultWidth```. In server-side this default width will be used.
+When constraints are not satisfied, component's children is not rendered at all.
+This is mostly useful for 
+
+- SSR rendered pages where you don't want to render some (mobile/web related) 
+content at all. In that case you need to provide ```defaultWidth```, or configure 
+it globally with ```configureDefaultWidth``` to be used for server-side-rendering.
+
+- Layouts where a component is rendered in completely different places
+based on window's width.
 
 ### Install
 
@@ -15,7 +20,7 @@ or
 ```yarn add vue-responsive-component```
 
 
-## use case
+## Usage Example
 
 ```javascript
 import Responsive from 'vue-responsive-component';
